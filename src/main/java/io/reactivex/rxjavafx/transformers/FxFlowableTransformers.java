@@ -15,6 +15,9 @@
  */
 package io.reactivex.rxjavafx.transformers;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import io.reactivex.rxjava3.core.FlowableOperator;
 import io.reactivex.rxjava3.core.FlowableTransformer;
 import io.reactivex.rxjava3.exceptions.Exceptions;
@@ -22,8 +25,6 @@ import io.reactivex.rxjava3.functions.Action;
 import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.subscribers.ResourceSubscriber;
 import javafx.application.Platform;
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
 
 
 public class FxFlowableTransformers {

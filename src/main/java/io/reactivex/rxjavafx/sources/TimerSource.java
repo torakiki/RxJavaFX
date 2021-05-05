@@ -15,13 +15,14 @@
  */
 package io.reactivex.rxjavafx.sources;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjavafx.subscriptions.JavaFxSubscriptions;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
-import io.reactivex.rxjavafx.subscriptions.JavaFxSubscriptions;
-import java.util.concurrent.atomic.AtomicLong;
 
 public final class TimerSource {
     private TimerSource() {

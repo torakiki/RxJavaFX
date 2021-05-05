@@ -16,9 +16,26 @@
 package io.reactivex.rxjavafx.observables;
 
 
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
+
 import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjavafx.sources.*;
+import io.reactivex.rxjavafx.sources.ActionEventSource;
+import io.reactivex.rxjavafx.sources.Change;
+import io.reactivex.rxjavafx.sources.DialogSource;
+import io.reactivex.rxjavafx.sources.ListChange;
+import io.reactivex.rxjavafx.sources.MapChange;
+import io.reactivex.rxjavafx.sources.NodeEventSource;
+import io.reactivex.rxjavafx.sources.ObservableListSource;
+import io.reactivex.rxjavafx.sources.ObservableMapSource;
+import io.reactivex.rxjavafx.sources.ObservableSetSource;
+import io.reactivex.rxjavafx.sources.ObservableValueSource;
+import io.reactivex.rxjavafx.sources.SceneEventSource;
+import io.reactivex.rxjavafx.sources.SetChange;
+import io.reactivex.rxjavafx.sources.TimerSource;
+import io.reactivex.rxjavafx.sources.WindowEventSource;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
@@ -34,10 +51,6 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
-
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Function;
 
 
 public enum JavaFxObservable {

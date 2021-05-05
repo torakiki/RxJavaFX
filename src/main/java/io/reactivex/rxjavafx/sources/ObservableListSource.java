@@ -15,6 +15,9 @@
  */
 package io.reactivex.rxjavafx.sources;
 
+import java.util.HashMap;
+import java.util.function.Function;
+
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.ObservableOnSubscribe;
 import io.reactivex.rxjavafx.observables.JavaFxObservable;
@@ -23,9 +26,6 @@ import io.reactivex.rxjavafx.subscriptions.JavaFxSubscriptions;
 import javafx.beans.property.ListProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-
-import java.util.HashMap;
-import java.util.function.Function;
 
 public final class ObservableListSource {
     private ObservableListSource() {}

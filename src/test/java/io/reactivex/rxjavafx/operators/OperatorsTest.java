@@ -1,16 +1,17 @@
 package io.reactivex.rxjavafx.operators;
 
-import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjavafx.transformers.FxFlowableTransformers;
-import io.reactivex.rxjavafx.transformers.FxObservableTransformers;
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjavafx.transformers.FxFlowableTransformers;
+import io.reactivex.rxjavafx.transformers.FxObservableTransformers;
 
 public final class OperatorsTest {
 

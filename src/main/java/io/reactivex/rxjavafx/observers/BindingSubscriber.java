@@ -15,14 +15,15 @@
  */
 package io.reactivex.rxjavafx.observers;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import io.reactivex.rxjava3.flowables.ConnectableFlowable;
 import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.functions.Function;
 import javafx.beans.binding.Binding;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
 
 final class BindingSubscriber<T, S> extends ObservableListenerHelper<S> implements Subscriber<T>, ObservableValue<S>, Binding<S> {
 

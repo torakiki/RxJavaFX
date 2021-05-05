@@ -15,12 +15,12 @@
  */
 package io.reactivex.rxjavafx.sources;
 
+import java.util.Optional;
+
 import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjavafx.schedulers.JavaFxScheduler;
 import javafx.scene.control.Dialog;
-
-import java.util.Optional;
 
 public final class DialogSource {
     private DialogSource() {}

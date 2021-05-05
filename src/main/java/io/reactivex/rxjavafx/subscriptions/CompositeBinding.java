@@ -15,10 +15,15 @@
  */
 package io.reactivex.rxjavafx.subscriptions;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import io.reactivex.rxjava3.exceptions.Exceptions;
 import javafx.beans.binding.Binding;
-
-import java.util.*;
 
 
 /**

@@ -15,6 +15,8 @@
  */
 package io.reactivex.rxjavafx.observers;
 
+import java.util.Optional;
+
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.flowables.ConnectableFlowable;
 import io.reactivex.rxjava3.functions.Consumer;
@@ -22,8 +24,6 @@ import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 import io.reactivex.rxjavafx.observables.JavaFxObservable;
 import javafx.beans.binding.Binding;
 import javafx.beans.value.ObservableValue;
-
-import java.util.Optional;
 
 public enum JavaFxSubscriber {
     ;//no instances

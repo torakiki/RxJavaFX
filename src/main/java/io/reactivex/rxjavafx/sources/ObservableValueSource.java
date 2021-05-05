@@ -15,14 +15,14 @@
  */
 package io.reactivex.rxjavafx.sources;
 
+import java.util.Optional;
+
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.ObservableEmitter;
 import io.reactivex.rxjavafx.subscriptions.JavaFxSubscriptions;
 import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-
-import java.util.Optional;
 
 public class ObservableValueSource {
 

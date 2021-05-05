@@ -18,8 +18,8 @@ package io.reactivex.rxjavafx.subscriptions;
 
 import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.Disposable;
-import javafx.application.Platform;
 import io.reactivex.rxjavafx.schedulers.JavaFxScheduler;
+import javafx.application.Platform;
 
 
 public final class JavaFxSubscriptions {

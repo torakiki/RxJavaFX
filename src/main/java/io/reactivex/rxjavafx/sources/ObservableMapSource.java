@@ -15,18 +15,16 @@
  */
 package io.reactivex.rxjavafx.sources;
 
+import java.util.AbstractMap.SimpleEntry;
+import java.util.Map.Entry;
+
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.ObservableOnSubscribe;
 import io.reactivex.rxjavafx.observables.JavaFxObservable;
 import io.reactivex.rxjavafx.subscriptions.JavaFxSubscriptions;
-import javafx.beans.property.ListProperty;
 import javafx.beans.property.MapProperty;
 import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableMap;
-import io.reactivex.rxjavafx.schedulers.JavaFxScheduler;
-
-import java.util.AbstractMap.SimpleEntry;
-import java.util.Map.Entry;
 
 public final class ObservableMapSource {
 

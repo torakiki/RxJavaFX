@@ -15,26 +15,38 @@
  */
 package io.reactivex.rxjavafx.subscriptions;
 
-import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.processors.PublishProcessor;
-import io.reactivex.rxjavafx.observers.JavaFxObserver;
-import io.reactivex.rxjavafx.observers.JavaFxSubscriber;
-import io.reactivex.rxjavafx.schedulers.JavaFxScheduler;
-import io.reactivex.rxjava3.subjects.PublishSubject;
-import javafx.application.Platform;
-import javafx.beans.binding.Binding;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.junit.Assert.*;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.processors.PublishProcessor;
+import io.reactivex.rxjava3.subjects.PublishSubject;
+import io.reactivex.rxjavafx.observers.JavaFxObserver;
+import io.reactivex.rxjavafx.observers.JavaFxSubscriber;
+import io.reactivex.rxjavafx.schedulers.JavaFxScheduler;
+import javafx.application.Platform;
+import javafx.beans.binding.Binding;
 
 public final class BindingTest {
 
+	@BeforeClass
+	public static void initJFX() {
+		try {
+			javafx.application.Platform.startup(() ->{});
+		}catch(final IllegalStateException ignore) {
+		}
+	}
+	
 
     @Test
     public void testCompositeBinding() {

@@ -1,8 +1,8 @@
 module rxjavafx {
-	requires io.reactivex.rxjava3;
-	requires javafx.base;
-	requires javafx.graphics;
-	requires javafx.controls;
+	requires transitive io.reactivex.rxjava3;
+	requires transitive javafx.base;
+	requires transitive javafx.graphics;
+	requires transitive javafx.controls;
 	requires org.reactivestreams;
 
 	exports io.reactivex.rxjavafx.observables;
