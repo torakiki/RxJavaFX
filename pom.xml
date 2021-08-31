@@ -3,10 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>io.reactivex.rxjava3</groupId>
+	<groupId>black.pdf.rxjava3</groupId>
 	<artifactId>rxjavafx</artifactId>
 	<packaging>jar</packaging>
-	<name>RxJavaFX</name>
+	<name>RxJavaFX repackaged</name>
 	<version>3.0.0-SNAPSHOT</version>
 
 	<description>RxJava extensions for JavaFX</description>
@@ -27,10 +27,10 @@
 	</licenses>
 
 	<properties>
-		<javafx.version>15.0.1</javafx.version>
-		<rxjava.version>3.0.9</rxjava.version>
+		<javafx.version>16</javafx.version>
+		<rxjava.version>3.1.1</rxjava.version>
 		<junit.version>4.13.1</junit.version>
-		<mockito.version>3.7.0</mockito.version>
+		<mockito.version>3.12.4</mockito.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -160,6 +160,13 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>3.2.0</version>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Automatic-Module-Name>black.pdf.rxjavafx</Automatic-Module-Name>
+						</manifestEntries>
+					</archive>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
