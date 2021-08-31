@@ -14,7 +14,7 @@ Maven:
 
 ```xml
 <dependency>
-    <groupId>black.pdf.rxjava3</groupId>
+    <groupId>org.pdfsam.rxjava3</groupId>
 	 <artifactId>rxjavafx</artifactId>
     <version>3.x.y</version>
 </dependency>
