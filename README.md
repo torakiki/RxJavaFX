@@ -1,6 +1,6 @@
 # RxJavaFX: JavaFX bindings for RxJava
 
-This is a fork of the original repository of [RxJava](https://github.com/ReactiveX/RxJava).
+This is a fork of the original repository of [RxJava](https://github.com/ReactiveX/RxJavaFX).
 
 It's a follow up on [this comment](https://github.com/ReactiveX/RxJavaFX/pull/94#issuecomment-908499509) and it's the minimal work needed to make it up and running using [RxJava](https://github.com/ReactiveX/RxJava) version 3.x. As per the comment, the library has been repackaged on a different domain and released to Maven Central.
 
