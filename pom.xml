@@ -5,7 +5,7 @@
 	<artifactId>rxjavafx</artifactId>
 	<packaging>jar</packaging>
 	<name>RxJavaFX repackaged</name>
-	<version>3.0.1</version>
+	<version>3.0.2-SNAPSHOT</version>
 
 	<description>RxJava extensions for JavaFX</description>
 	<url>https://github.com/github.com:torakiki/RxJavaFX</url>
@@ -36,7 +36,7 @@
 		<connection>scm:git:git@github.com:torakiki/RxJavaFX.git</connection>
 		<developerConnection>scm:git:git@github.com:torakiki/RxJavaFX.git</developerConnection>
 		<url>scm:git:git@github.com:torakiki/RxJavaFX.git</url>
-		<tag>v3.0.1</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<distributionManagement>
