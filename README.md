@@ -8,9 +8,7 @@ This library is released for our needs and to be easily available to our product
 
 A PDF version of the guide written by the original author is available [here](src/docs/rxjavafx-guide.pdf) given the original link is now dead.
 
-Read the free eBook [_Learning RxJava with JavaFX_](https://www.gitbook.com/book/thomasnield/rxjavafx-guide/details) to get started.
-
-RxJavaFX is a lightweight library to convert JavaFX events into [RxJava](https://github.com/ReactiveX/RxJava) Observables/Flowables and vice versa. It also has a `Scheduler` to safely move emissions to the JavaFX Event Dispatch Thread. 
+It requires **JDK 11**
 
 Maven:
 
