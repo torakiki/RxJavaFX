@@ -8,11 +8,11 @@
 	<version>3.0.3-SNAPSHOT</version>
 
 	<description>RxJava extensions for JavaFX</description>
-	<url>https://github.com/github.com:torakiki/RxJavaFX</url>
+	<url>https://github.com/torakiki/RxJavaFX</url>
 
 	<issueManagement>
 		<system>GitHub</system>
-		<url>https://github.com/github.com:torakiki/RxJavaFX/issues</url>
+		<url>https://github.com/torakiki/RxJavaFX/issues</url>
 	</issueManagement>
 
 	<licenses>
