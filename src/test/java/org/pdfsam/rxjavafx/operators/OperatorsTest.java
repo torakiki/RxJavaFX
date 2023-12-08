@@ -5,13 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.pdfsam.rxjavafx.transformers.FxFlowableTransformers;
 import org.pdfsam.rxjavafx.transformers.FxObservableTransformers;
 
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public final class OperatorsTest {
 
@@ -24,7 +25,7 @@ public final class OperatorsTest {
                 .compose(FxObservableTransformers.doOnNextCount(onNextCounts::add))
                 .subscribe();
 
-        Assert.assertTrue(onNextCounts.containsAll(Arrays.asList(1, 2, 3)));
+        assertTrue(onNextCounts.containsAll(Arrays.asList(1, 2, 3)));
     }
 
     @Test
@@ -36,7 +37,7 @@ public final class OperatorsTest {
                 .compose(FxObservableTransformers.doOnCompleteCount(onCompleteCount::set))
                 .subscribe();
 
-        Assert.assertTrue(onCompleteCount.get() == 3);
+        assertTrue(onCompleteCount.get() == 3);
     }
 
     @Test
@@ -49,7 +50,7 @@ public final class OperatorsTest {
                 .compose(FxObservableTransformers.doOnErrorCount(onErrorCount::set))
                 .subscribe();
 
-        Assert.assertTrue(onErrorCount.get() == 3);
+        assertTrue(onErrorCount.get() == 3);
     }
 
 
@@ -63,7 +64,7 @@ public final class OperatorsTest {
                 .compose(FxFlowableTransformers.doOnNextCount(onNextCounts::add))
                 .subscribe();
 
-        Assert.assertTrue(onNextCounts.containsAll(Arrays.asList(1, 2, 3)));
+        assertTrue(onNextCounts.containsAll(Arrays.asList(1, 2, 3)));
     }
 
     @Test
@@ -75,7 +76,7 @@ public final class OperatorsTest {
                 .compose(FxFlowableTransformers.doOnCompleteCount(onCompleteCount::set))
                 .subscribe();
 
-        Assert.assertTrue(onCompleteCount.get() == 3);
+        assertTrue(onCompleteCount.get() == 3);
     }
 
     @Test
@@ -88,6 +89,6 @@ public final class OperatorsTest {
                 .compose(FxFlowableTransformers.doOnErrorCount(onErrorCount::set))
                 .subscribe();
 
-        Assert.assertTrue(onErrorCount.get() == 3);
+        assertTrue(onErrorCount.get() == 3);
     }
 }

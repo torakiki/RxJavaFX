@@ -15,9 +15,9 @@
  */
 package org.pdfsam.rxjavafx.schedulers;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -31,10 +31,8 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 import org.pdfsam.rxjavafx.schedulers.JavaFxScheduler;
 
@@ -49,9 +47,6 @@ import javafx.stage.Stage;
  */
 public final class JavaFxSchedulerTest {
 
-    @Rule
-    public ExpectedException exception = ExpectedException.none();
-
     private static void waitForEmptyEventQueue() throws Exception {
         FXUtilities.runAndWait(() -> {
             // nothing to do, we're just waiting here for the event queue to be emptied
@@ -65,7 +60,7 @@ public final class JavaFxSchedulerTest {
         }
     }
 
-	@BeforeClass
+	@BeforeAll
 	public static void initJFX() {
 		try {
 			javafx.application.Platform.startup(() ->{});

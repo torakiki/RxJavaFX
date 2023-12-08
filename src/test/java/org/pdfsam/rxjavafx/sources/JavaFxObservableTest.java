@@ -1,12 +1,12 @@
 /**
  * Copyright 2017 Netflix, Inc.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,20 +14,6 @@
  * limitations under the License.
  */
 package org.pdfsam.rxjavafx.sources;
-
-import static org.junit.Assert.assertTrue;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.pdfsam.rxjavafx.observables.JavaFxObservable;
-import org.pdfsam.rxjavafx.schedulers.JavaFxScheduler;
-import org.pdfsam.rxjavafx.sources.Change;
-import org.pdfsam.rxjavafx.sources.Flag;
-import org.pdfsam.rxjavafx.sources.ListChange;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.observers.TestObserver;
@@ -42,24 +28,34 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Duration;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.pdfsam.rxjavafx.observables.JavaFxObservable;
+import org.pdfsam.rxjavafx.schedulers.JavaFxScheduler;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public final class JavaFxObservableTest {
 
-	@BeforeClass
-	public static void initJFX() {
-		try {
-			javafx.application.Platform.startup(() ->{});
-		}catch(final IllegalStateException ignore) {
-		}
-	}
+    @BeforeAll
+    public static void initJFX() {
+        try {
+            javafx.application.Platform.startup(() -> {
+            });
+        } catch (final IllegalStateException ignore) {
+        }
+    }
 
     @Test
     public void testIntervalSource() {
 
         final CountDownLatch latch = new CountDownLatch(5);
 
-        JavaFxObservable.interval(Duration.millis(1000)).take(5)
-                .subscribe(v -> latch.countDown());
+        JavaFxObservable.interval(Duration.millis(1000)).take(5).subscribe(v -> latch.countDown());
 
         try {
             latch.await();
@@ -75,8 +71,7 @@ public final class JavaFxObservableTest {
 
         TestObserver<List<String>> testObserver = new TestObserver<>();
 
-        JavaFxObservable.emitOnChanged(sourceList)
-                .subscribe(testObserver);
+        JavaFxObservable.emitOnChanged(sourceList).subscribe(testObserver);
 
         testObserver.assertValueCount(1);
 
@@ -88,12 +83,12 @@ public final class JavaFxObservableTest {
     @Test
     public void testListPropertyEmitOnChanged() {
 
-        ListProperty<String> sourceList = new SimpleListProperty<>(FXCollections.observableArrayList("Alpha", "Beta", "Gamma"));
+        ListProperty<String> sourceList = new SimpleListProperty<>(
+                FXCollections.observableArrayList("Alpha", "Beta", "Gamma"));
 
         TestObserver<List<String>> testObserver = new TestObserver<>();
 
-        JavaFxObservable.emitOnChanged(sourceList)
-                .subscribe(testObserver);
+        JavaFxObservable.emitOnChanged(sourceList).subscribe(testObserver);
 
         testObserver.assertValueCount(1);
 
@@ -105,6 +100,7 @@ public final class JavaFxObservableTest {
 
         testObserver.assertValueCount(3);
     }
+
     @Test
     public void testRxObservableChanges() {
         Property<String> sourceProperty = new SimpleStringProperty();
@@ -119,12 +115,8 @@ public final class JavaFxObservableTest {
         sourceProperty.setValue(null);
         sourceProperty.setValue("Gamma");
 
-        testObserver.assertValues(
-                        new Change<>(null, "Alpha"),
-                        new Change<>("Alpha", "Beta"),
-                        new Change<>("Beta", null),
-                        new Change<>(null, "Gamma")
-        );
+        testObserver.assertValues(new Change<>(null, "Alpha"), new Change<>("Alpha", "Beta"),
+                new Change<>("Beta", null), new Change<>(null, "Gamma"));
     }
 
     @Test
@@ -135,12 +127,10 @@ public final class JavaFxObservableTest {
 
         CountDownLatch gate = new CountDownLatch(1);
 
-        emissions.observeOn(Schedulers.io())
-                .observeOn(JavaFxScheduler.platform())
-                .take(3)
-                .toList()
-                .toObservable()
-                .subscribe(l -> assertTrue(l.equals(Arrays.asList("Alpha", "Beta", "Gamma"))), Throwable::printStackTrace, gate::countDown);;
+        emissions.observeOn(Schedulers.io()).observeOn(JavaFxScheduler.platform()).take(3).toList().toObservable()
+                .subscribe(l -> assertTrue(l.equals(Arrays.asList("Alpha", "Beta", "Gamma"))),
+                        Throwable::printStackTrace, gate::countDown);
+        ;
 
         Platform.runLater(() -> {
             sourceList.add("Alpha");
@@ -165,12 +155,9 @@ public final class JavaFxObservableTest {
 
         CountDownLatch gate = new CountDownLatch(1);
 
-        emissions.observeOn(Schedulers.io())
-                .observeOn(JavaFxScheduler.platform())
-                .take(2)
-                .toSortedList()
-                .toObservable()
-                .subscribe(l -> assertTrue(l.equals(Arrays.asList("Alpha","Gamma"))),Throwable::printStackTrace,gate::countDown);
+        emissions.observeOn(Schedulers.io()).observeOn(JavaFxScheduler.platform()).take(2).toSortedList().toObservable()
+                .subscribe(l -> assertTrue(l.equals(Arrays.asList("Alpha", "Gamma"))), Throwable::printStackTrace,
+                        gate::countDown);
 
         Platform.runLater(() -> {
             sourceList.add("Alpha");
@@ -199,21 +186,22 @@ public final class JavaFxObservableTest {
         class FlagAndCount {
             final Flag flag;
             final long count;
+
             FlagAndCount(Flag flag, long count) {
                 this.flag = flag;
                 this.count = count;
             }
 
         }
-        emissions.observeOn(Schedulers.io())
-                .observeOn(JavaFxScheduler.platform())
-                .take(5)
-                .groupBy(ListChange::getFlag)
-                .flatMapSingle(grp -> grp.count().map(ct -> new FlagAndCount(grp.getKey(),ct)))
-                .subscribe(l -> {
-                    if (l.flag.equals(Flag.ADDED)) { assertTrue(l.count == 3); }
-                    if (l.flag.equals(Flag.REMOVED)) { assertTrue(l.count == 2); }
-                },Throwable::printStackTrace,gate::countDown);
+        emissions.observeOn(Schedulers.io()).observeOn(JavaFxScheduler.platform()).take(5).groupBy(ListChange::getFlag)
+                .flatMapSingle(grp -> grp.count().map(ct -> new FlagAndCount(grp.getKey(), ct))).subscribe(l -> {
+                    if (l.flag.equals(Flag.ADDED)) {
+                        assertTrue(l.count == 3);
+                    }
+                    if (l.flag.equals(Flag.REMOVED)) {
+                        assertTrue(l.count == 2);
+                    }
+                }, Throwable::printStackTrace, gate::countDown);
 
         Platform.runLater(() -> {
             sourceList.add("Alpha");
@@ -229,7 +217,6 @@ public final class JavaFxObservableTest {
             e.printStackTrace();
         }
     }
-
 
     @Test
     public void testRxObservableListDistinctChangeMappings() {
@@ -242,21 +229,22 @@ public final class JavaFxObservableTest {
         class FlagAndCount {
             final Flag flag;
             final long count;
+
             FlagAndCount(Flag flag, long count) {
                 this.flag = flag;
                 this.count = count;
             }
 
         }
-        emissions.observeOn(Schedulers.io())
-                .observeOn(JavaFxScheduler.platform())
-                .take(3)
-                .groupBy(ListChange::getFlag)
-                .flatMapSingle(grp -> grp.count().map(ct -> new FlagAndCount(grp.getKey(),ct)))
-                .subscribe(l -> {
-                    if (l.flag.equals(Flag.ADDED)) { assertTrue(l.count == 2); }
-                    if (l.flag.equals(Flag.REMOVED)) { assertTrue(l.count == 1); }
-                },Throwable::printStackTrace,gate::countDown);
+        emissions.observeOn(Schedulers.io()).observeOn(JavaFxScheduler.platform()).take(3).groupBy(ListChange::getFlag)
+                .flatMapSingle(grp -> grp.count().map(ct -> new FlagAndCount(grp.getKey(), ct))).subscribe(l -> {
+                    if (l.flag.equals(Flag.ADDED)) {
+                        assertTrue(l.count == 2);
+                    }
+                    if (l.flag.equals(Flag.REMOVED)) {
+                        assertTrue(l.count == 1);
+                    }
+                }, Throwable::printStackTrace, gate::countDown);
 
         Platform.runLater(() -> {
             sourceList.add("Alpha");
@@ -274,7 +262,6 @@ public final class JavaFxObservableTest {
             e.printStackTrace();
         }
     }
-
 
     @Test
     public void testRxObservableListDistinctChanges() {
@@ -288,21 +275,22 @@ public final class JavaFxObservableTest {
         class FlagAndCount {
             final Flag flag;
             final long count;
+
             FlagAndCount(Flag flag, long count) {
                 this.flag = flag;
                 this.count = count;
             }
 
         }
-        emissions.observeOn(Schedulers.io())
-                .observeOn(JavaFxScheduler.platform())
-                .take(5)
-                .groupBy(ListChange::getFlag)
-                .flatMapSingle(grp -> grp.count().map(ct -> new FlagAndCount(grp.getKey(),ct)))
-                .subscribe(l -> {
-                    if (l.flag.equals(Flag.ADDED)) { assertTrue(l.count == 3); }
-                    if (l.flag.equals(Flag.REMOVED)) { assertTrue(l.count == 2); }
-                },Throwable::printStackTrace,gate::countDown);
+        emissions.observeOn(Schedulers.io()).observeOn(JavaFxScheduler.platform()).take(5).groupBy(ListChange::getFlag)
+                .flatMapSingle(grp -> grp.count().map(ct -> new FlagAndCount(grp.getKey(), ct))).subscribe(l -> {
+                    if (l.flag.equals(Flag.ADDED)) {
+                        assertTrue(l.count == 3);
+                    }
+                    if (l.flag.equals(Flag.REMOVED)) {
+                        assertTrue(l.count == 2);
+                    }
+                }, Throwable::printStackTrace, gate::countDown);
 
         Platform.runLater(() -> {
             sourceList.add("Alpha");
@@ -321,7 +309,6 @@ public final class JavaFxObservableTest {
         }
     }
 
-
     @Test
     public void testRxObservableListUpdates() {
 
@@ -333,30 +320,28 @@ public final class JavaFxObservableTest {
                 this.name = new ReadOnlyStringWrapper(name);
                 this.age.setValue(age);
             }
+
             @Override
             public String toString() {
                 return name.getValue();
             }
         }
 
-        Person person1 = new Person("Tom Salma",23);
+        Person person1 = new Person("Tom Salma", 23);
         Person person2 = new Person("Jacob Mores", 31);
         Person person3 = new Person("Sally Reyes", 32);
 
-        ObservableList<Person> sourceList = FXCollections.observableArrayList(user -> new javafx.beans.Observable[]{user.age} );
+        ObservableList<Person> sourceList = FXCollections.observableArrayList(
+                user -> new javafx.beans.Observable[] { user.age });
         Observable<Person> emissions = JavaFxObservable.updatesOf(sourceList);
 
         CountDownLatch gate = new CountDownLatch(1);
 
-        emissions.observeOn(Schedulers.io())
-                .observeOn(JavaFxScheduler.platform())
-                .take(2)
-                .count()
-                .toObservable()
-                .subscribe(ct -> assertTrue(ct == 2),Throwable::printStackTrace,gate::countDown);
+        emissions.observeOn(Schedulers.io()).observeOn(JavaFxScheduler.platform()).take(2).count().toObservable()
+                .subscribe(ct -> assertTrue(ct == 2), Throwable::printStackTrace, gate::countDown);
 
         Platform.runLater(() -> {
-            sourceList.addAll(person1,person2,person3);
+            sourceList.addAll(person1, person2, person3);
             person1.age.setValue(24);
             person2.age.setValue(32);
         });

@@ -15,39 +15,37 @@
  */
 package org.pdfsam.rxjavafx.subscriptions;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
-import java.util.Optional;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.pdfsam.rxjavafx.observers.JavaFxObserver;
-import org.pdfsam.rxjavafx.observers.JavaFxSubscriber;
-import org.pdfsam.rxjavafx.schedulers.JavaFxScheduler;
-import org.pdfsam.rxjavafx.subscriptions.CompositeBinding;
-
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.processors.PublishProcessor;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 import javafx.application.Platform;
 import javafx.beans.binding.Binding;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.pdfsam.rxjavafx.observers.JavaFxObserver;
+import org.pdfsam.rxjavafx.observers.JavaFxSubscriber;
+import org.pdfsam.rxjavafx.schedulers.JavaFxScheduler;
+
+import java.util.Optional;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public final class BindingTest {
 
-	@BeforeClass
-	public static void initJFX() {
-		try {
-			javafx.application.Platform.startup(() ->{});
-		}catch(final IllegalStateException ignore) {
-		}
-	}
-	
+    @BeforeAll
+    public static void initJFX() {
+        try {
+            javafx.application.Platform.startup(() -> {
+            });
+        } catch (final IllegalStateException ignore) {
+        }
+    }
 
     @Test
     public void testCompositeBinding() {
@@ -56,10 +54,13 @@ public final class BindingTest {
         Observable<Long> source = Observable.interval(1, TimeUnit.SECONDS);
         CountDownLatch unsubscribeWait = new CountDownLatch(2);
 
-        Binding<Long> binding1 = JavaFxObserver.toBinding(source.doOnDispose(unsubscribeWait::countDown).observeOn(JavaFxScheduler.platform()));
+        Binding<Long> binding1 = JavaFxObserver.toBinding(
+                source.doOnDispose(unsubscribeWait::countDown).observeOn(JavaFxScheduler.platform()));
         bindings.add(binding1);
 
-        Binding<Long> binding2 = JavaFxObserver.toBinding(source.doOnDispose(unsubscribeWait::countDown).reduce(0L, (x, y) -> x + y).observeOn(JavaFxScheduler.platform()).toObservable());
+        Binding<Long> binding2 = JavaFxObserver.toBinding(
+                source.doOnDispose(unsubscribeWait::countDown).reduce(0L, (x, y) -> x + y)
+                        .observeOn(JavaFxScheduler.platform()).toObservable());
         bindings.add(binding2);
 
         sleep(3000);
@@ -81,9 +82,8 @@ public final class BindingTest {
 
             final AtomicInteger emissionCount = new AtomicInteger(0);
 
-            Observable<String> items =
-                    Observable.just("Alpha", "Beta", "Gamma", "Delta")
-                            .doOnNext(s -> emissionCount.incrementAndGet());
+            Observable<String> items = Observable.just("Alpha", "Beta", "Gamma", "Delta")
+                    .doOnNext(s -> emissionCount.incrementAndGet());
 
             Binding<String> binding = JavaFxObserver.toBinding(items);
 
@@ -155,9 +155,8 @@ public final class BindingTest {
 
             final AtomicInteger emissionCount = new AtomicInteger(0);
 
-            Observable<String> items =
-                    Observable.just("Alpha", "Beta", "Gamma", "Delta")
-                            .doOnNext(s -> emissionCount.incrementAndGet());
+            Observable<String> items = Observable.just("Alpha", "Beta", "Gamma", "Delta")
+                    .doOnNext(s -> emissionCount.incrementAndGet());
 
             Binding<String> binding = JavaFxObserver.toLazyBinding(items);
 
@@ -237,9 +236,8 @@ public final class BindingTest {
 
             final AtomicInteger emissionCount = new AtomicInteger(0);
 
-            Flowable<String> items =
-                    Flowable.just("Alpha", "Beta", "Gamma", "Delta")
-                            .doOnNext(s -> emissionCount.incrementAndGet());
+            Flowable<String> items = Flowable.just("Alpha", "Beta", "Gamma", "Delta")
+                    .doOnNext(s -> emissionCount.incrementAndGet());
 
             Binding<String> binding = JavaFxSubscriber.toBinding(items);
 
@@ -262,9 +260,8 @@ public final class BindingTest {
 
             final AtomicInteger emissionCount = new AtomicInteger(0);
 
-            Flowable<String> items =
-                    Flowable.just("Alpha", "Beta", "Gamma", "Delta")
-                            .doOnNext(s -> emissionCount.incrementAndGet());
+            Flowable<String> items = Flowable.just("Alpha", "Beta", "Gamma", "Delta")
+                    .doOnNext(s -> emissionCount.incrementAndGet());
 
             Binding<String> binding = JavaFxSubscriber.toLazyBinding(items);
 
