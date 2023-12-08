@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.pdfsam.rxjava3</groupId>
     <artifactId>rxjavafx</artifactId>
     <packaging>jar</packaging>
     <name>RxJavaFX repackaged</name>
-    <version>3.0.3-SNAPSHOT</version>
+    <version>3.0.3</version>
 
     <description>RxJava extensions for JavaFX</description>
     <url>https://github.com/torakiki/RxJavaFX</url>
@@ -37,7 +36,7 @@
         <connection>scm:git:git@github.com:torakiki/RxJavaFX.git</connection>
         <developerConnection>scm:git:git@github.com:torakiki/RxJavaFX.git</developerConnection>
         <url>scm:git:git@github.com:torakiki/RxJavaFX.git</url>
-        <tag>HEAD</tag>
+        <tag>v3.0.3</tag>
     </scm>
 
     <developers>
